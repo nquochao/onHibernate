@@ -14,6 +14,17 @@ import jakarta.persistence.OneToMany;
 /**
  * @author HaoNguyen
  * this is the best setup. we rely on onetomany and manytoone with mappedby field.
+ * in fact the onetomany may be removed and we would use the manytoone + we create the set with query 1
+2
+3
+4
+5
+6
+List<OneToManyBiDirChessboardPreference> preferences = entityManager.createQuery(
+    "select pc " +
+    "from OneToManyBiDirChessBoardPreference pc " +
+    "where pc.username.id = :Id", OneToManyBiDirChessBoardPreference.class)
+.setParameter( "Id", 1L )
  */
 public class OneToManyBiDirUserName  {
 	@Id

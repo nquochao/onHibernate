@@ -33,5 +33,9 @@
  <mapping class="oliviaproject.hibernate.foreignkey.ForeignKeyChessBoardPreference" />
  <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyUserName" />
  <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.onetomany.OneToManyUserName" />
+ <mapping class="oliviaproject.hibernate.onetomany.OneToManyChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.onetomany.bidirectional.OneToManyBiDirUserName" />
+ <mapping class="oliviaproject.hibernate.onetomany.bidirectional.OneToManyBiDirChessBoardPreference" />
    </session-factory>
 </hibernate-configuration>

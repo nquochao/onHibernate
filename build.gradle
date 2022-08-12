@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+version = '1.2.1'
+String projectname='onhibernate'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    implementation group: 'ch.qos.logback', name:'logback-classic', version: '1.2.3'
+    implementation group: 'ch.qos.logback', name:'logback-core', version: '1.2.3'
+	// this dependency was not found so I loaded locally and pointed below with implementation( files("C:\\thirdparty...: implementation group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version: '6.0.2.Final'
+	implementation( 'org.hibernate:hibernate-core:6.1.2.Final')
+    implementation( files("C:\\thirdparty\\ojdbc8.jar", "C:\\thirdparty\\hibernate-commons-annotations-6.0.2.Final.jar"))
+
+    testImplementation ( 
+              'junit:junit:4+', 
+    	      'org.dbunit:dbunit:2.5.0',
+  	          'org.mockito:mockito-all:1.9.5',
+		      'javax.transaction:jta:1.1'
+			  
+    )
+	}
+// Include dependent libraries in archive.
+
+jar {
+  manifest { 
+    attributes "Main-Class": "oliviaproject."+projectname
+  }  
+
+
+}
+
+  
+
+ 

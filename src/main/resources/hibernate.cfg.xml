@@ -27,7 +27,11 @@
          calypso
       </property>
       <property name="hibernate.hbm2ddl.auto">update</property>
- <mapping class="oliviaproject.hibernate.UserName" />
- <mapping class="oliviaproject.hibernate.ChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.jointable.JoinTableUserName" />
+ <mapping class="oliviaproject.hibernate.jointable.JoinTableChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.foreignkey.ForeignKeyUserName" />
+ <mapping class="oliviaproject.hibernate.foreignkey.ForeignKeyChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyUserName" />
+ <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyChessBoardPreference" />
    </session-factory>
 </hibernate-configuration>

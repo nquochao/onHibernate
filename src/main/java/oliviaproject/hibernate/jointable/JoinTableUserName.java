@@ -1,18 +1,18 @@
-package oliviaproject.hibernate;
+package oliviaproject.hibernate.jointable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class UserName  extends DefaultEntity {
+public class JoinTableUserName  {
 	@Id
     @GeneratedValue
-
 	Integer id;
 
 
@@ -24,15 +24,18 @@ public class UserName  extends DefaultEntity {
 	
 	private Boolean isConnected;
 	private String password;
-    @OneToOne (fetch = FetchType.LAZY, cascade = jakarta.persistence.CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="PREFERENCE_ID")
-    private ChessBoardPreference preference;
+	@OneToOne(cascade = CascadeType.ALL)
+	  @JoinTable(name = "JOINTABLE_USERNAME_CHESSBOARDPREFERENCE",
+	      joinColumns = @JoinColumn(name = "USERNAME_ID"),
+	      inverseJoinColumns = @JoinColumn(name = "CHESSBOARD_PREFERENCE_ID"))
+    //JOINTABLE_USERNAME_CHESSBOARDPREFERENCE table will link USERNAME_ID with CHESSBOARD_PREFERENCE_ID
+    private JoinTableChessBoardPreference preference;
 
-	public ChessBoardPreference getPreference() {
+	public JoinTableChessBoardPreference getPreference() {
 		return preference;
 	}
 
-	public void setPreference(ChessBoardPreference preference) {
+	public void setPreference(JoinTableChessBoardPreference preference) {
 		this.preference = preference;
 	}
 	public Integer getId() {

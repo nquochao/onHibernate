@@ -1,4 +1,4 @@
-package oliviaproject.hibernate;
+package oliviaproject.hibernate.foreignkey;
 
 
 import jakarta.persistence.CascadeType;
@@ -8,18 +8,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class ChessBoardPreference extends DefaultEntity{
+public class ForeignKeyChessBoardPreference {
+	@Id
+    @GeneratedValue
+	Integer id;
+
+	@OneToOne	(mappedBy = "preference")
+	private ForeignKeyUserName userName;
+/**
+ * here userName is the owner and links to ChessBoardPreference via field username.preference.
+ * mappedBy means ChessBoardPreference is not the owner but referred to in userName.preference
+ * 
+ */
 	String colorTileWhite;
 	String colorTileBlack;
 	String colorPieceWhite;
 	String colorPieceBlack;
 	int chesswidth;
-
-	@OneToOne(mappedBy="preference", cascade=CascadeType.ALL)	
-	private UserName userName;
-	@Id
-    @GeneratedValue
-	Integer id;
 
 public Integer getId() {
 	return id;
@@ -28,11 +33,11 @@ public Integer getId() {
 public void setId(Integer id) {
 	this.id = id;
 }
-	public UserName getUserName() {
+	public ForeignKeyUserName getUserName() {
 		return userName;
 	}
 
-	public void setUserName(UserName userName) {
+	public void setUserName(ForeignKeyUserName userName) {
 		this.userName = userName;
 	}
 

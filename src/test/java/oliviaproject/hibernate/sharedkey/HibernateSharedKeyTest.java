@@ -1,4 +1,4 @@
-package oliviaproject.hibernate;
+package oliviaproject.hibernate.sharedkey;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,8 +9,13 @@ import org.slf4j.LoggerFactory;
 
 import junit.framework.TestCase;
 
-public class HibernateTest extends TestCase {
-	private static final Logger log = LoggerFactory.getLogger(HibernateTest.class);
+/**
+ * @author HaoNguyen This junit test is to show the necessity to commit the
+ *         transaction to see the changes in the database.
+ * 
+ */
+public class HibernateSharedKeyTest extends TestCase {
+	private static final Logger log = LoggerFactory.getLogger(HibernateSharedKeyTest.class);
 
 	private static SessionFactory factory;
 
@@ -29,11 +34,11 @@ public class HibernateTest extends TestCase {
 		Session session = factory.openSession();
 		Transaction tx = null;
 
-		ChessBoardPreference preference = new ChessBoardPreference();
+		SharedKeyChessBoardPreference preference = new SharedKeyChessBoardPreference();
 		preference.setChesswidth(80);
 
 // Add new username object
-		UserName userName = new UserName();
+		SharedKeyUserName userName = new SharedKeyUserName();
 		userName.setEmail("demo-user@mail.com");
 		userName.setUserName("olivia");
 
@@ -58,10 +63,10 @@ public class HibernateTest extends TestCase {
 		 */
 		Transaction tx = session.beginTransaction();
 
-		ChessBoardPreference preference = new ChessBoardPreference();
+		SharedKeyChessBoardPreference preference = new SharedKeyChessBoardPreference();
 		preference.setChesswidth(80);
 
-		UserName userName = new UserName();
+		SharedKeyUserName userName = new SharedKeyUserName();
 		userName.setEmail("demo-user@mail.com");
 		userName.setUserName("olivia");
 
@@ -89,6 +94,15 @@ public class HibernateTest extends TestCase {
 		 * 
 		 */
 		session.getTransaction().commit();
+		/**
+		 * 
+		 * if you play twice you need to change the userName Caused by:
+		 * java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique
+		 * constraint (CALYPSO_161.UK_APNNTI2FQ7NWY851I8QQATYT7) violated This is
+		 * because {link UserName.userName gets the annotation: @Column(unique = true)
+		 *
+		 */
+
 		session.close();
 	}
 }

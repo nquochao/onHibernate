@@ -31,6 +31,9 @@
  <mapping class="oliviaproject.hibernate.jointable.JoinTableChessBoardPreference" />
  <mapping class="oliviaproject.hibernate.foreignkey.ForeignKeyUserName" />
  <mapping class="oliviaproject.hibernate.foreignkey.ForeignKeyChessBoardPreference" />
+ <mapping class="oliviaproject.hibernate.foreignkey.namedquery.NamedQueryUserName" />
+ <mapping class="oliviaproject.hibernate.foreignkey.namedquery.NamedQueryChessBoardPreference" />
+ 
  <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyUserName" />
  <mapping class="oliviaproject.hibernate.sharedkey.SharedKeyChessBoardPreference" />
  <mapping class="oliviaproject.hibernate.onetomany.OneToManyUserName" />
